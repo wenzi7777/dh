@@ -50,7 +50,7 @@ export default function Checkout() {
         }
         try {
             setLoading(true)
-            const data = await fetch('http://localhost:23333/api/v1/code?email=' + email).then(res => res.json())
+            const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/code?email=' + email).then(res => res.json())
             if (data) {
                 setLoading(false)
             }
@@ -95,7 +95,7 @@ export default function Checkout() {
                 verificationCode,
                 products: searchParams.get('_ids')
             }
-            const data = await axios.post('http://localhost:23333/api/v1/checkout', d)
+            const data = await axios.post('https://openapis.dflylabs.ltd:23333/api/v1/checkout', d)
             if (data.status) {
                 showAlert('谢谢您！', '申请表已提交，您将在3秒后被重定向至首页。')
                 setTimeout(() => {
@@ -120,7 +120,7 @@ export default function Checkout() {
                 let _idArray: string[] = []
                 _idArray = searchParams.get('_ids')?.split(',') as string[]
                 _idArray.length = _idArray.length - 1
-                const data = await fetch('http://localhost:23333/api/v1/product').then(res => res.json())
+                const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/product').then(res => res.json())
                 if (data) {
                     let selectedProducts: Product[] = []
                     for (let i = 0; i < _idArray.length; i++) {

@@ -60,7 +60,7 @@ export default function Admin() {
         }
         try {
             setLoading(true)
-            const data = await fetch('http://localhost:23333/api/v1/admin/verify', {
+            const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/admin/verify', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ export default function Admin() {
     const search = async () => {
         try {
             setLoading(true)
-            const data = await fetch(`http://localhost:23333/api/v1/admin/search?field=teamName&keyword=${keyword}&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
+            const data = await fetch(`https://openapis.dflylabs.ltd:23333/api/v1/admin/search?field=teamName&keyword=${keyword}&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
             if (data) {
                 setLoading(false)
             }
@@ -110,7 +110,7 @@ export default function Admin() {
     const approve = async (_id: any, order: Order, sendEmail: boolean, email: string) => {
         try {
             setLoading(true)
-            const data = await fetch('http://localhost:23333/api/v1/admin/edit', {
+            const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/admin/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -143,7 +143,7 @@ export default function Admin() {
     const unapprove = async (_id: any, order: Order, sendEmail: boolean, email: string) => {
         try {
             setLoading(true)
-            const data = await fetch('http://localhost:23333/api/v1/admin/edit', {
+            const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/admin/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -176,7 +176,7 @@ export default function Admin() {
     const seeAllUnApproved = async () => {
         try {
             setLoading(true)
-            const data = await fetch(`http://localhost:23333/api/v1/admin/search?field=approved&keyword=unapproved&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
+            const data = await fetch(`https://openapis.dflylabs.ltd:23333/api/v1/admin/search?field=approved&keyword=unapproved&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
             if (data) {
                 setLoading(false)
             }
@@ -197,7 +197,7 @@ export default function Admin() {
     const seeAllApproved = async () => {
         try {
             setLoading(true)
-            const data = await fetch(`http://localhost:23333/api/v1/admin/search?field=approved&keyword=approved&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
+            const data = await fetch(`https://openapis.dflylabs.ltd:23333/api/v1/admin/search?field=approved&keyword=approved&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
             if (data) {
                 setLoading(false)
             }
@@ -218,7 +218,7 @@ export default function Admin() {
     const seeAll = async () => {
         try {
             setLoading(true)
-            const data = await fetch(`http://localhost:23333/api/v1/admin/search?field=&keyword=&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
+            const data = await fetch(`https://openapis.dflylabs.ltd:23333/api/v1/admin/search?field=&keyword=&page=${page}&limit=16&token=${window.atob(localStorage.getItem('token') as string)}`).then(res => res.json())
             if (data) {
                 setLoading(false)
             }

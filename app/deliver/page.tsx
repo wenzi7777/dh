@@ -136,7 +136,7 @@ export default function Deliver() {
                 } else {
                     setLoading(true)
                     try {
-                        const data = await fetch('http://localhost:23333/api/v1/product').then(res => res.json())
+                        const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/product').then(res => res.json())
                         if (data as Product[]) {
                             for (let i = 0; i < data.length; i++) {
                                 for (let j = 0; j < cart.length; j++) {
@@ -167,7 +167,7 @@ export default function Deliver() {
     useEffect(() => {
         (async () => {
             try {
-                const data = await fetch('http://localhost:23333/api/v1/product').then(res => res.json())
+                const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/product').then(res => res.json())
                 if (data) {
                     setProducts(data)
                     setLoading(false)

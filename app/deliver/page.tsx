@@ -5,6 +5,7 @@ import {Overlay} from "next/dist/client/components/react-dev-overlay/internal/co
 import Header from "@/app/deliver/header";
 import {useRouter, useSearchParams} from "next/navigation";
 import Image from "next/image";
+import {BASE_HOST} from "@/config";
 
 type Product = {
     _id: any,
@@ -136,7 +137,7 @@ export default function Deliver() {
                 } else {
                     setLoading(true)
                     try {
-                        const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/product').then(res => res.json())
+                        const data = await fetch(`${BASE_HOST}/api/v1/product`).then(res => res.json())
                         if (data as Product[]) {
                             for (let i = 0; i < data.length; i++) {
                                 for (let j = 0; j < cart.length; j++) {
@@ -167,7 +168,7 @@ export default function Deliver() {
     useEffect(() => {
         (async () => {
             try {
-                const data = await fetch('https://openapis.dflylabs.ltd:23333/api/v1/product').then(res => res.json())
+                const data = await fetch(`${BASE_HOST}/api/v1/product`).then(res => res.json())
                 if (data) {
                     setProducts(data)
                     setLoading(false)

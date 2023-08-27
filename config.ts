@@ -1,0 +1,1 @@
+export const BASE_HOST = 'https://dflyopenapis.1205.moe'

@@ -174,6 +174,33 @@ export default function Admin() {
         }
         setLoading(false)
     }
+    const unapproveAndDelete = async (_id: any, order: Order, sendEmail: boolean, email: string) => {
+        try {
+            setLoading(true)
+            const data = await fetch(`${BASE_HOST}/api/v1/admin/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token,
+                    _id,
+                    sendEmail,
+                    email
+                })
+            }).then(res => res.json())
+            if (data) {
+                let newOrders = orders
+                newOrders = newOrders?.filter(o => o !== order)
+                setOrders(newOrders)
+            }
+        } catch (e) {
+            showAlert('载入失败', e as string)
+            console.log(e)
+            setLoading(false)
+        }
+        setLoading(false)
+    }
     const seeAllUnApproved = async () => {
         try {
             setLoading(true)
@@ -238,7 +265,7 @@ export default function Admin() {
         setLoading(false)
     }
     const previousPage = async () => {
-        if(page <= 1) {
+        if (page <= 1) {
             showAlert('错误', '已经是第一页了。')
             return
         }
@@ -246,7 +273,7 @@ export default function Admin() {
         await search()
     }
     const nextPage = async () => {
-        if(page >= totalPage) {
+        if (page >= totalPage) {
             showAlert('错误', '已经是最后一页了。')
             return
         }
@@ -375,7 +402,7 @@ export default function Admin() {
                                                             <div className="ml-4 flex flex-1 flex-col">
                                                                 <div>
                                                                     <div
-                                                                        className="flex justify-between text-base font-medium text-gray-900">
+                                                                        className="text-base font-medium text-gray-900 sm:flex sm:justify-between">
                                                                         <h3>{product.name}</h3>
                                                                         <p className="ml-4">_id {product._id}</p>
                                                                     </div>
@@ -403,6 +430,12 @@ export default function Admin() {
                                                 className="cursor-pointer block w-full rounded-md bg-indigo-600 px-2 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
                                                 改为不通过(若订单提交者设定了需要邮件提醒，不通过的信息会被自动发送)
+                                            </div>
+                                            <div
+                                                onClick={() => unapproveAndDelete(order._id, order, order.sendEmail, order.email)}
+                                                className="cursor-pointer block w-full rounded-md bg-indigo-600 px-2 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            >
+                                                改为不通过并且删除订单，退回库存(若订单提交者设定了需要邮件提醒，不通过的信息会被自动发送)
                                             </div>
                                         </div>
                                     </li>

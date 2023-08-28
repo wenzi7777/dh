@@ -326,7 +326,7 @@ export default function Checkout() {
 
                                     <div className="ml-4 flex flex-1 flex-col">
                                         <div>
-                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                            <div className="text-base font-medium text-gray-900 sm:flex sm:justify-between">
                                                 <h3>{product.name}</h3>
                                                 <p className="ml-4">_id {product._id}</p>
                                             </div>
